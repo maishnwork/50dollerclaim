@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>USADAILY | Latest USA News</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #fff;
+  color: #111;
+  padding-bottom: 150px;
+}
+
+/* HEADER */
+
+header {
+  background: #fff;
+  border-bottom: 2px solid #111;
+  padding: 18px 5%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.logo {
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  animation: logoGlow 2s infinite alternate;
+}
+
+@keyframes logoGlow {
+  from {
+    transform: scale(1);
+    text-shadow: 0 0 0 transparent;
+  }
+  to {
+    transform: scale(1.06);
+    text-shadow: 0 0 12px #999;
+  }
+}
+
+nav {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: #111;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* NEWS SECTION */
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 25px 18px;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 900;
+  border-bottom: 3px solid #111;
+  padding-bottom: 12px;
+  margin-bottom: 22px;
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.news-card {
+  border: 1px solid #ddd;
+  padding: 18px;
+  background: #fff;
+  border-radius: 8px;
+  transition: .25s;
+  cursor: pointer;
+}
+
+.news-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px #00000018;
+}
+
+.news-card h3 {
+  font-size: 19px;
+  margin-bottom: 10px;
+}
+
+.news-card p {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.news-card a {
+  color: #111;
+  font-weight: bold;
+}
+
+#status {
+  margin: 20px 0;
+  color: #666;
+  text-align: center;
+}
+
+/* FOOTER */
+
+footer {
+  border-top: 1px solid #ddd;
+  padding: 25px 15px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-bottom: 15px;
+}
+
+.footer-links a {
+  color: #111;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+footer p {
+  color: #555;
+  font-size: 13px;
+}
+
+/* BOTTOM REWARD BAR */
+
+.reward-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  background: #080808;
+  color: white;
+  padding: 15px 12px;
+  border-top: 4px solid #ffcc00;
+  box-shadow: 0 -5px 25px #0008;
+  animation: rewardEntrance .8s ease-out;
+}
+
+@keyframes rewardEntrance {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.reward-content {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 12px;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.reward-heading {
+  font-size: 19px;
+  font-weight: 900;
+  color: #ffdc43;
+  letter-spacing: 2px;
+  /* Animation removed */
+}
+
+.reward-amount {
+  font-size: 40px;
+  font-weight: 1000;
+  color: white;
+  /* Animation removed */
+}
+
+.claim-button {
+  background: #ffcc00;
+  color: #000;
+  border: none;
+  padding: 15px 25px;
+  font-size: 17px;
+  font-weight: 900;
+  border-radius: 7px;
+  cursor: pointer;
+  box-shadow: 0 0 15px #ffcc0080;
+  /* Animation removed */
+}
+
+.timer-area {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+}
+
+.timer-label {
+  font-size: 13px;
+  font-weight: bold;
+  color: white;
+  letter-spacing: 1px;
+}
+
+.countdown {
+  color: #ff2929;
+  font-size: 28px;
+  font-weight: 1000;
+  letter-spacing: 2px;
+  animation: timerBlink 1s infinite;
+}
+
+@keyframes timerBlink {
+  50% {
+    opacity: .45;
+    text-shadow: 0 0 12px red;
+  }
+}
+
+.reward-message {
+  width: 100%;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 3px;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  header {
+    padding: 14px 12px;
+  }
+
+  .header-content {
+    justify-content: center;
+  }
+
+  .logo {
+    font-size: 27px;
+  }
+
+  nav {
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .reward-bar {
+    padding: 10px 5px;
+  }
+
+  .reward-content {
+    gap: 8px;
+  }
+
+  .reward-heading {
+    font-size: 13px;
+  }
+
+  .reward-amount {
+    font-size: 27px;
+  }
+
+  .claim-button {
+    padding: 11px 13px;
+    font-size: 13px;
+  }
+
+  .timer-label {
+    font-size: 9px;
+  }
+
+  .countdown {
+    font-size: 21px;
+  }
+
+  .reward-message {
+    font-size: 10px;
+  }
+
+  body {
+    padding-bottom: 150px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+  <div class="header-content">
+
+    <div class="logo">USADAILY</div>
+
+    <nav>
+      <a href="#news">Home</a>
+
+      <a href="https://www.facebook.com/maishndotwork"
+         target="_blank"
+         rel="noopener noreferrer">
+        Business
+      </a>
+
+      <a href="mailto:maishn.work@gmail.com">
+        Contact
+      </a>
+    </nav>
+
+  </div>
+</header>
+
+<!-- NEWS -->
+
+<main class="container" id="news">
+
+  <h1 class="section-title">LATEST USA NEWS</h1>
+
+  <div id="status">Loading latest news...</div>
+
+  <div class="news-grid" id="newsGrid"></div>
+
+</main>
+
+<!-- FOOTER -->
+
+<footer>
+
+  <div class="footer-links">
+
+    <a href="https://www.facebook.com/maishndotwork"
+       target="_blank"
+       rel="noopener noreferrer">
+      Business
+    </a>
+
+    <a href="mailto:maishn.work@gmail.com">
+      Contact
+    </a>
+
+  </div>
+
+  <p>© 2026 Maishn.Work. All Rights Reserved.</p>
+
+</footer>
+
+<!-- FIXED REWARD BAR -->
+
+<div class="reward-bar">
+
+  <div class="reward-content">
+
+    <div class="reward-heading">
+      SPECIAL REWARD
+    </div>
+
+    <div class="reward-amount">
+      $50.00
+    </div>
+
+    <button
+      class="claim-button"
+      id="claimButton"
+      type="button">
+      CLAIM $50 NOW
+    </button>
+
+    <div class="timer-area">
+
+      <div class="timer-label">
+        NEXT CLAIM IN
+      </div>
+
+      <div class="countdown" id="countdown">
+        05:00
+      </div>
+
+    </div>
+
+    <div class="reward-message" id="rewardMessage">
+      PLEASE WAIT...
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+/* =========================
+   USA NEWS LOADER
+========================= */
+
+const newsGrid = document.getElementById("newsGrid");
+const statusText = document.getElementById("status");
+const customTargetURL = "https://auctionr.org/4/13b9b7cc03a84fa910d384329fc4b2b3";
+
+async function loadNews() {
+
+  const rssURL =
+    "https://news.google.com/rss/search?q=USA+when:7d&hl=en-US&gl=US&ceid=US:en";
+
+  const apiURL =
+    "https://api.rss2json.com/v1/api.json?rss_url=" +
+    encodeURIComponent(rssURL);
+
+  try {
+
+    const response = await fetch(apiURL);
+
+    if (!response.ok) {
+      throw new Error("News unavailable");
+    }
+
+    const data = await response.json();
+
+    if (!data.items || !data.items.length) {
+      throw new Error("No news");
+    }
+
+    newsGrid.innerHTML = "";
+
+    data.items.slice(0, 30).forEach(item => {
+
+      const card = document.createElement("article");
+      card.className = "news-card";
+
+      const title = document.createElement("h3");
+      title.textContent = item.title || "USA News";
+
+      const description = document.createElement("p");
+
+      description.textContent =
+        (item.description || "Read the full report for more details.")
+        .replace(/<[^>]*>/g, "")
+        .slice(0, 220);
+
+      const link = document.createElement("a");
+
+      link.href = customTargetURL;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = "Read More →";
+
+      card.append(title, description, link);
+
+      card.addEventListener("click", function(event) {
+        window.open(
+          customTargetURL,
+          "_blank",
+          "noopener,noreferrer"
+        );
+      });
+
+      newsGrid.appendChild(card);
+
+    });
+
+    statusText.textContent = "Latest USA News";
+
+  } catch (error) {
+
+    statusText.textContent =
+      "News could not be loaded. Please refresh the page.";
+
+  }
+
+}
+
+loadNews();
+
+
+/* =========================
+   CLAIM BUTTON
+========================= */
+
+const claimButton =
+  document.getElementById("claimButton");
+
+claimButton.addEventListener("click", function() {
+
+  window.open(
+    "https://auctionr.org/4/e387fc17908bca86646faef13fb40ce3",
+    "_blank",
+    "noopener,noreferrer"
+  );
+
+});
+
+
+/* =========================
+   FIVE MINUTE COUNTDOWN
+========================= */
+
+const countdown =
+  document.getElementById("countdown");
+
+const COOLDOWN = 300;
+
+let remaining = COOLDOWN;
+
+function updateTimer() {
+
+  const minutes = Math.floor(remaining / 60);
+  const seconds = remaining % 60;
+
+  countdown.textContent =
+    String(minutes).padStart(2, "0") + ":" +
+    String(seconds).padStart(2, "0");
+
+  if (remaining <= 0) {
+    remaining = COOLDOWN;
+    return;
+  }
+
+  remaining--;
+
+}
+
+updateTimer();
+
+setInterval(updateTimer, 1000);
+
+</script>
+
+</body>
+</html>
